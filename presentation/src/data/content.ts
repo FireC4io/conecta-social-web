@@ -10,7 +10,7 @@ export const slides: SlideMeta[] = [
   { id: 'abertura', title: 'Conecta Social', section: 'Projeto', seconds: 30 },
   { id: 'pitch', title: 'Gestão para iniciativas sociais', section: 'Projeto', seconds: 60 },
   { id: 'matriz', title: 'Mapa de riscos', section: 'Segurança', seconds: 60 },
-  { id: 'tratamento', title: 'Tratamento dos riscos', section: 'Segurança', seconds: 60 },
+  { id: 'tratamento', title: 'R01 e R02: tratamento e próximo passo', section: 'Segurança', seconds: 60 },
   { id: 'arquitetura', title: 'Arquitetura do Conecta Social', section: 'Nuvem', seconds: 120 },
   { id: 'eventos', title: 'Eventos: web e mobile', section: 'Experiência', seconds: 70 },
   { id: 'dashboard', title: 'Dashboard em duas telas', section: 'Experiência', seconds: 70 },
@@ -32,14 +32,14 @@ export const risks: Risk[] = [
   { id: 'R10', title: 'Soft-delete sem retenção', impact: 4, probability: 3, score: 12, severity: 'Médio', treatment: 'Aceito', action: 'Definir retenção ou purga', evidence: 'A matriz mantém o risco aceito.' },
 ]
 
-export interface Screenshot { id: string; platform: 'WEB' | 'MOBILE'; label: string; src: string; historical?: boolean }
+export interface Screenshot { id: string; platform: 'WEB' | 'MOBILE'; label: string; src: string; historical?: boolean; previewPosition?: string }
 export const screenshots: Record<string, Screenshot> = {
   webEvents: { id: 'webEvents', platform: 'WEB', label: 'Lista de eventos', src: '/screenshots/web/eventos-historico.png', historical: true },
-  mobileEvents: { id: 'mobileEvents', platform: 'MOBILE', label: 'Lista de eventos', src: '/screenshots/mobile/eventos.png' },
+  mobileEvents: { id: 'mobileEvents', platform: 'MOBILE', label: 'Aba Eventos', src: '/screenshots/mobile/eventos.png', previewPosition: 'center 50%' },
   webDashboard: { id: 'webDashboard', platform: 'WEB', label: 'Dashboard', src: '/screenshots/web/dashboard-historico.png', historical: true },
-  mobileDashboard: { id: 'mobileDashboard', platform: 'MOBILE', label: 'Painel', src: '/screenshots/mobile/dashboard.png' },
-  mobileDonations: { id: 'mobileDonations', platform: 'MOBILE', label: 'Detalhe da doação', src: '/screenshots/mobile/doacao-detalhe.png' },
-  mobileLogs: { id: 'mobileLogs', platform: 'MOBILE', label: 'Logs de auditoria', src: '/screenshots/mobile/logs.png' },
+  mobileDashboard: { id: 'mobileDashboard', platform: 'MOBILE', label: 'Painel', src: '/screenshots/mobile/dashboard.png', previewPosition: 'center 35%' },
+  mobileDonations: { id: 'mobileDonations', platform: 'MOBILE', label: 'Lista de doações', src: '/screenshots/mobile/doacoes-lista.png', previewPosition: 'center top' },
+  mobileStock: { id: 'mobileStock', platform: 'MOBILE', label: 'Ajuste de estoque', src: '/screenshots/mobile/ajuste-estoque.png', previewPosition: 'center 40%' },
 }
 
 export interface ArchitectureNode { id: string; label: string; detail: string; status: 'codigo' | 'relatorio' | 'validar' }
@@ -63,4 +63,9 @@ export const architecture = {
   ] as ArchitectureEdge[],
 }
 
-export const abstractContent = { objective: '', methodology: '', results: '', conclusions: '' }
+export const abstractContent = {
+  objective: 'Centralizar doações, famílias, voluntários e eventos para apoiar a gestão de organizações sociais.',
+  methodology: 'Desenvolvimento incremental em sprints, com aplicações web, API e mobile, código versionado e testes automatizados.',
+  results: 'Três aplicações integradas: área pública, gestão administrativa, indicadores, estoque e registros de auditoria.',
+  conclusions: 'A centralização favorece a rastreabilidade e a prestação de contas. Offline completo e limite de tentativas no login seguem pendentes.',
+}

@@ -15,7 +15,7 @@ export function Screenshot({ data, compact = false }: { data: ScreenshotData; co
     window.addEventListener('keydown', onKey, true)
     return () => window.removeEventListener('keydown', onKey, true)
   }, [zoomed, wasFocused])
-  const image = !failed ? <img src={data.src} alt={`${data.platform}: ${data.label}${data.historical ? ', captura histórica' : ''}`} onError={() => setFailed(true)} /> : null
+  const image = !failed ? <img src={data.src} alt={`${data.platform}: ${data.label}${data.historical ? ', captura histórica' : ''}`} style={data.previewPosition ? { objectPosition: data.previewPosition } : undefined} onError={() => setFailed(true)} /> : null
   return <>
     <div className={`shot ${data.platform === 'MOBILE' ? 'shot-mobile' : 'shot-web'} ${compact ? 'shot-compact' : ''}`}>
       <div className="shot-bar"><span>{data.platform} · {data.label}</span>{image && <button type="button" className="icon-button" aria-label={`Ampliar ${data.label}`} onClick={(event) => { setWasFocused(event.currentTarget); setZoomed(true) }}><Maximize2 size={19}/></button>}</div>

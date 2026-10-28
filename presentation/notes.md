@@ -26,19 +26,21 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Objetivo:** Explicar o método visual da matriz.
 
-**Pontos essenciais:** Nove entradas na fonte; impacto × probabilidade documentados; severidade original; R01 é o maior escore.
+**Pontos essenciais:** A matriz registra nove entradas, mas a fala se concentra em R01 e R02. Preserve os valores originais: R01, impacto 8, probabilidade 7, pontuação 56, alto; R02, impacto 6, probabilidade 5, pontuação 30, médio.
 
-**Fala sugerida:** “A matriz da API registra nove riscos. Cada ponto usa os valores de impacto e probabilidade do documento, e a cor reproduz a criticidade que ele atribui. Podemos selecionar um ponto para ver tratamento e evidência. Esses valores são da identificação original; não calculamos risco residual nem chamamos cada risco de vulnerabilidade comprovada.”
+**Fala sugerida:** “Mapeamos nove riscos, mas vou destacar dois que mostram situações diferentes. O R01 trata da possibilidade de dados sensíveis aparecerem nos logs. Na matriz, recebeu impacto 8 e probabilidade 7, totalizando 56, com criticidade alta. O R02 trata de tentativas repetidas de login sem controle; recebeu impacto 6 e probabilidade 5, totalizando 30, com criticidade média. Esses são os valores originais da avaliação.”
 
-**Transição:** Selecionar R01 e avançar para as medidas aplicadas.
+**Ação no slide:** Começar com R01 selecionado e clicar em R02 ao mencioná-lo.
 
-## 4. Tratamento dos riscos — 1:00
+**Transição:** Mostrar o que já foi tratado em R01 e o que falta em R02.
 
-**Objetivo:** Distinguir o status da matriz da evidência no código.
+## 4. R01 e R02: tratamento e próximo passo — 1:00
 
-**Pontos essenciais:** R01 sanitiza apenas o primeiro nível e envia log sem bloquear; R07/R08 geram embed local; R04 ainda consta aceito, embora o boot hoje tenha flags; quatro entradas em mitigação.
+**Objetivo:** Contrastar uma mitigação registrada e observada no código com um tratamento ainda pendente.
 
-**Fala sugerida:** “Em R01 há uma proteção concreta: o interceptor substitui chaves como senha e token no primeiro nível do payload, e o envio externo não bloqueia a requisição. Em R07 e R08, o backend passou a validar URL e gerar o embed localmente. Há divergência em R04: a matriz o mantém como aceito, mas o entrypoint atual já condiciona migrations e seed. Os outros itens seguem com validação ou ação pendente.”
+**Pontos essenciais:** R01 consta como mitigado: o interceptor oculta chaves sensíveis no primeiro nível do payload, e o logger envia sem bloquear a resposta. Isso não comprova sanitização profunda. R02 consta como em mitigação: a matriz recomenda rate limiting, MFA ou lockout; não apresentar a proteção como implementada.
+
+**Fala sugerida:** “No R01 já existe um tratamento observável. Antes de registrar a requisição, o interceptor oculta campos sensíveis, como senha e token, no primeiro nível do payload. O envio dos logs também é assíncrono, então não segura a resposta da API. É uma mitigação concreta, embora ainda caiba validar dados aninhados. Já o R02 segue em mitigação. A matriz propõe limitar tentativas de login por rate limiting, MFA ou bloqueio temporário; ainda não devemos dizer que essa proteção está entregue. Essa diferença entre medida aplicada e próxima ação é o ponto principal do nosso mapa.”
 
 **Transição:** Explicar onde os componentes da aplicação se encontram.
 
@@ -46,9 +48,9 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Objetivo:** Explicar como os componentes do projeto se relacionam no deploy documentado.
 
-**Pontos essenciais:** Web e mobile usam endpoint configurável. O relatório descreve VCN, Security List, VM Ubuntu e Docker Compose; no fluxo da API, Caddy recebe HTTPS, NestJS autentica com JWT e acessa PostgreSQL sem porta pública. A seta dos clientes é tracejada porque o endpoint Oracle não foi confirmado. S3 e Better Stack aparecem no código, mas sua ativação nesse deploy exige validação.
+**Pontos essenciais:** Web e mobile usam endpoint configurável. O relatório descreve VCN, Security List, VM Ubuntu e Docker Compose; no fluxo da API, Caddy recebe HTTPS, NestJS autentica com JWT e acessa PostgreSQL sem porta pública. S3 e Better Stack são integrações presentes no código da API.
 
-**Fala sugerida:** “Aqui está a arquitetura do Conecta Social, seguindo o caminho de uma requisição. A web e o aplicativo mobile se comunicam com a API por um endereço configurável. No deploy documentado na Oracle, o HTTPS chega ao Caddy, que encaminha a chamada para a API NestJS. A API aplica autenticação JWT e acessa o PostgreSQL pela rede interna do Docker; o banco não fica exposto publicamente. A VCN, a lista de segurança e a VM formam a camada de infraestrutura. O tracejado lembra que precisamos confirmar se os clientes da demonstração apontam para esta instância. Embaixo estão S3 e Better Stack: há integração no código, mas não confirmamos a ativação desses serviços nesse deploy. O relatório descreve uma implantação e testes em outubro; não é uma afirmação de disponibilidade neste instante.”
+**Fala sugerida:** “O fluxograma acompanha uma chamada do usuário. A web, feita em Next.js, e o aplicativo mobile, em Expo, acessam a API por um endereço configurável. Na arquitetura descrita no relatório, a entrada HTTPS chega ao Caddy. Ele encaminha a requisição para a API NestJS, que aplica a autenticação por JWT e consulta o PostgreSQL. O banco fica na rede interna do Docker, sem porta pública. Por trás desse fluxo estão a VCN, a Security List e uma máquina virtual Ubuntu na Oracle Cloud. O Docker Compose organiza os contêineres da aplicação. A API também contém integração com S3 para imagens e Better Stack para logs. Assim, separamos a interface usada pela equipe, a lógica de negócio e a persistência, com controle de acesso na entrada e na API.”
 
 **Transição:** Passar da infraestrutura para a experiência nas duas plataformas.
 
@@ -56,9 +58,9 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Objetivo:** Comparar a mesma área em dois dispositivos.
 
-**Pontos essenciais:** Web em tabela com pesquisa e ações; mobile com aba Eventos e lista. Captura web histórica, mobile pendente.
+**Pontos essenciais:** A captura web histórica mostra a gestão em tabela. A captura do simulador mostra a aba Eventos com publicações ilustradas e acesso ao Instagram. Os exemplos nas imagens não devem ser tratados como resultados do projeto.
 
-**Fala sugerida:** “Na web, a captura histórica mostra uma tabela de eventos com pesquisa e ações por linha, adequada ao espaço do navegador. No mobile, o código traz Eventos como aba e uma tela própria de listagem. A captura mobile ainda será inserida, então hoje não vou atribuir detalhes visuais que não estejam documentados.”
+**Fala sugerida:** “Aqui podemos comparar duas formas de ver eventos. A web mostra a visão de gestão: tabela, pesquisa e ações por linha. No aplicativo, a aba Eventos apresenta publicações com imagem e um acesso ao Instagram. A diferença não é apenas o tamanho da tela; muda também a forma de navegar e de consumir a informação. As imagens servem para mostrar a interface, não para medir atividade atual.”
 
 **Transição:** Usar o dashboard para discutir densidade de informação.
 
@@ -66,9 +68,9 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Objetivo:** Explicar a adaptação de indicadores.
 
-**Pontos essenciais:** Web distribui gráficos em área grande; mobile tem Painel, seleção de período e rolagem. Números da captura histórica não são métricas atuais.
+**Pontos essenciais:** A web distribui gráficos em área grande. A captura mobile mostra indicadores em cards, gráfico, escolha de período e rolagem. Os números exibidos não são métricas do projeto.
 
-**Fala sugerida:** “O painel web aproveita a largura para distribuir gráficos. No mobile, o código organiza uma tela de Painel com seleção de período e componentes ajustados à largura disponível. O interesse aqui é a diferença de composição, não comparar os valores da imagem web antiga com dados atuais.”
+**Fala sugerida:** “O painel web aproveita o espaço horizontal para distribuir gráficos. No mobile, o Painel começa por indicadores em cards e segue com o gráfico e a seleção do período. A rolagem organiza a leitura em uma coluna mais estreita. O que queremos comparar é a composição da informação nas duas telas; os números vistos nas capturas são apenas dados do ambiente usado.”
 
 **Transição:** Mostrar um fluxo de trabalho que ganha destaque no aplicativo.
 
@@ -76,19 +78,19 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Objetivo:** Preparar a demonstração do fluxo operacional.
 
-**Pontos essenciais:** Filtros por tamanho e gênero; ajuste de estoque; distribuição; logs da API. Não afirmar uso offline.
+**Pontos essenciais:** As capturas mostram a lista de doações com filtros por tamanho e gênero e o formulário de ajuste de estoque, incluindo quantidade, motivo e observação. Distribuição e logs podem ser mostrados na demonstração, sem simular telas nos slides.
 
-**Fala sugerida:** “O código mobile contém filtros de doações por tamanho e gênero, ajuste de estoque e distribuição a famílias. A aba de logs consulta registros de auditoria da API. Esse é um fluxo interessante para mostrar ao vivo. A documentação menciona sincronização offline como requisito, mas não a tratamos como entrega confirmada.”
+**Fala sugerida:** “Essas duas telas mostram um percurso operacional. Primeiro, a lista permite filtrar as doações por tamanho e gênero e consultar os itens disponíveis. Depois, no detalhe, o ajuste de estoque registra uma quantidade, um motivo e uma observação. Isso permite representar perda, vencimento ou correção de inventário sem trocar manualmente um número no cadastro. Na demonstração, podemos percorrer esse fluxo no aplicativo e depois abrir os logs de auditoria.”
 
 **Transição:** Registrar o espaço reservado ao material acadêmico final.
 
 ## 9. Resumo expandido — 1:00
 
-**Objetivo:** Sinalizar a peça acadêmica pendente sem criar conteúdo.
+**Objetivo:** Apresentar a síntese do resumo expandido sem reproduzir seus parágrafos na tela.
 
-**Pontos essenciais:** Objetivo, metodologia, resultados e conclusões serão incluídos a partir do material final.
+**Pontos essenciais:** O texto define a centralização da gestão de organizações sociais como objetivo; descreve desenvolvimento incremental em sprints; relata três aplicações integradas e destaca rastreabilidade e prestação de contas. Registra sincronização offline completa e limite de tentativas no login como pendências.
 
-**Fala sugerida:** “Esta parte reserva o lugar do resumo expandido. Vamos inserir objetivo, metodologia, resultados e conclusões a partir do texto acadêmico final, preservando a mesma identidade visual. Deixamos os campos explícitos para não substituir evidência por texto genérico.”
+**Fala sugerida:** “No resumo expandido, organizamos o projeto em quatro partes. O objetivo é reunir doações, famílias, voluntários e eventos num mesmo sistema. A construção foi incremental, em sprints, com aplicações web, API e mobile. O texto apresenta como resultados a área pública, a gestão administrativa, os indicadores e a auditoria. A conclusão é que essa centralização melhora a rastreabilidade e pode apoiar a prestação de contas. Também registramos duas próximas etapas: completar o uso offline e limitar as tentativas de login.”
 
 **Transição:** Abrir o aplicativo real.
 
