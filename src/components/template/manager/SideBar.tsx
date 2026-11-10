@@ -15,7 +15,15 @@ import { usePathname } from 'next/navigation';
 import useAuth from '@/data/hooks/useAuth';
 import { canManageVolunteers } from '@/core/auth/permissions';
 
-export default function Sidebar() {
+interface SidebarProps {
+   mobileOpen?: boolean;
+   onNavigate?: () => void;
+}
+
+export default function Sidebar({
+   mobileOpen = false,
+   onNavigate,
+}: SidebarProps) {
    const pathname = usePathname();
    const { user } = useAuth();
    const sidebarTopics = [
@@ -60,29 +68,49 @@ export default function Sidebar() {
          : []),
    ];
 
+   const navigation = (
+      <div>
+         {sidebarTopics.map((topic, index) => {
+            const isActive =
+               topic.link === '/dashboard'
+                  ? pathname === topic.link
+                  : pathname === topic.link ||
+                    pathname.startsWith(`${topic.link}/`);
+            return (
+               <Link
+                  key={index}
+                  href={topic.link}
+                  onClick={onNavigate}
+                  className={`sidebar-menu flex items-center gap-2 p-2 mb-3 cursor-pointer rounded-lg ${
+                     isActive ? 'sidebar-menu-selected' : ''
+                  }`}
+               >
+                  {topic.icon}
+                  {topic.description}
+               </Link>
+            );
+         })}
+      </div>
+   );
+
    return (
-      <aside className="sidebar-color h-full w-64 flex-none flex flex-col justify-between p-4 overflow-y-auto">
-         <div>
-            {sidebarTopics.map((topic, index) => {
-               const isActive =
-                  topic.link === '/dashboard'
-                     ? pathname === topic.link
-                     : pathname === topic.link ||
-                       pathname.startsWith(`${topic.link}/`);
-               return (
-                  <Link
-                     key={index}
-                     href={topic.link}
-                     className={`sidebar-menu flex items-center gap-2 p-2 mb-4 cursor-pointer rounded-lg ${
-                        isActive ? 'sidebar-menu-selected' : ''
-                     }`}
-                  >
-                     {topic.icon}
-                     {topic.description}
-                  </Link>
-               );
-            })}
-         </div>
-      </aside>
+      <>
+         <aside className="sidebar-color hidden h-full w-64 flex-none flex-col justify-between overflow-y-auto p-4 md:flex">
+            {navigation}
+         </aside>
+         {mobileOpen && (
+            <div className="fixed inset-0 top-16 z-40 md:hidden">
+               <button
+                  type="button"
+                  aria-label="Fechar menu"
+                  className="absolute inset-0 bg-slate-900/40"
+                  onClick={onNavigate}
+               />
+               <aside className="sidebar-color relative h-full w-[min(18rem,85vw)] overflow-y-auto border-l-0 border-b-0 p-4 shadow-xl">
+                  {navigation}
+               </aside>
+            </div>
+         )}
+      </>
    );
 }

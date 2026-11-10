@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Presentation project generated files
+/presentation/node_modules/
+/presentation/dist/
