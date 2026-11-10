@@ -3,7 +3,7 @@ import { usePathname } from 'next/navigation';
 import Header from '../home/Header'; // Importando o Header para Landing Page e Dashboard
 
 import Footer from './Footer'; // Importando o Footer
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import Sidebar from '../manager/SideBar';
 
 interface PageProps {
@@ -17,6 +17,7 @@ const publicRoutes = ['/', '/about', '/contactUs', '/login'];
 
 function Page(props: PageProps) {
    const path = usePathname(); // Obtém a pathname da URL
+   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
    const isPublicRoute = publicRoutes.includes(path); // Verifica se a rota é pública
    const isDashboardRoute = path.startsWith('/dashboard');
 
@@ -38,9 +39,16 @@ function Page(props: PageProps) {
                      background: 'white',
                   }}
                >
-                  <Header logged />
+                  <Header
+                     logged
+                     mobileMenuOpen={mobileMenuOpen}
+                     onMenuToggle={() => setMobileMenuOpen((open) => !open)}
+                  />
                   <div className="flex min-h-0 flex-1 w-full overflow-hidden">
-                     <Sidebar />
+                     <Sidebar
+                        mobileOpen={mobileMenuOpen}
+                        onNavigate={() => setMobileMenuOpen(false)}
+                     />
                      <div className="min-w-0 flex-1 flex flex-col overflow-y-auto">
                         <main
                            className={`flex-1 flex flex-col${

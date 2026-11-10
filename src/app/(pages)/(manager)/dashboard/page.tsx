@@ -36,7 +36,7 @@ const formatStatus = (status: string) => getEventStatusLabel(status);
 
 function LoadingState() {
    return (
-      <div className="space-y-6 p-6">
+      <div className="space-y-6 p-4 sm:p-6">
          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {Array.from({ length: 6 }).map((_, index) => (
                <div
@@ -57,7 +57,7 @@ function LoadingState() {
 
 function ErrorState({ onRetry }: { onRetry: () => void }) {
    return (
-      <div className="flex min-h-[70vh] items-center justify-center p-6">
+      <div className="flex min-h-[70vh] items-center justify-center p-4 sm:p-6">
          <div className="max-w-lg rounded-2xl border border-[#dbe7ef] bg-white p-8 text-center shadow-sm">
             <h2 className="text-2xl font-bold text-[#090934]">
                Não foi possível carregar o dashboard
@@ -201,7 +201,7 @@ function Dashboard() {
    }
 
    return (
-      <div className="min-h-screen overflow-y-auto bg-[#F7F9FB] p-6 pb-28">
+      <div className="min-h-full min-w-0 overflow-y-auto bg-[#F7F9FB] p-4 pb-28 sm:p-6">
          <div className="mb-6">
             <SummaryCards summary={overview.summary} />
          </div>

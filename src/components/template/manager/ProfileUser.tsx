@@ -60,7 +60,7 @@ function ProfileUser() {
 
    return (
       <div
-         className="relative flex items-center space-x-3 mr-10"
+         className="relative flex min-w-0 items-center space-x-2 sm:space-x-3 sm:mr-2"
          ref={dropdownRef}
       >
          <div
@@ -71,13 +71,16 @@ function ProfileUser() {
             {`${firstnameLetter}${lastnameLetter}`}
          </div>
 
-         <div className="cursor-pointer" onClick={handleDropdownToggle}>
+         <div
+            className="hidden min-w-0 cursor-pointer sm:block"
+            onClick={handleDropdownToggle}
+         >
             <p className="font-semibold text-gray-800">{`${firstname} ${lastname}`}</p>
             <p className="text-sm text-gray-500">Project Manager</p>
          </div>
 
          <button
-            className="text-gray-600 hover:text-gray-800 transition-colors"
+            className="hidden text-gray-600 hover:text-gray-800 transition-colors sm:block"
             onClick={handleDropdownToggle}
          >
             <svg
