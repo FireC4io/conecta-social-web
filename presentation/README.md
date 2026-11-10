@@ -1,6 +1,6 @@
 # Apresentação — Conecta Social
 
-Aplicação web local, independente da API e dos aplicativos do projeto. São 10 slides: 10 minutos de fala e 5 minutos reservados à demonstração mobile.
+Aplicação web local, independente da API e dos aplicativos do projeto. São 11 slides: 10 minutos de fala e 5 minutos reservados à demonstração mobile.
 
 ## Executar
 
@@ -34,7 +34,7 @@ Abra em janela horizontal, de preferência em 16:9. O canvas é redimensionado s
 - Textos e composição: `src/main.tsx`.
 - Riscos: `src/data/content.ts`, lista `risks`. Mantenha os valores e classificações da fonte ao atualizar.
 - Resumo expandido: os quatro textos do slide ficam em `abstractContent`, em `src/data/content.ts`.
-- Capturas: substitua os arquivos em `public/screenshots/` ou altere o manifesto `screenshots` em `src/data/content.ts`. Os caminhos são relativos à raiz `public`. As prévias mobile são recortadas para leitura; o botão de ampliar exibe o arquivo completo. Ajuste `previewPosition` no manifesto para mudar o trecho visível. Se um arquivo estiver ausente, aparece um placeholder com plataforma, tela e caminho esperado.
+- Capturas: substitua os arquivos em `public/screenshots/` ou altere o manifesto `screenshots` em `src/data/content.ts`. Os caminhos são relativos à raiz `public`. As capturas mobile são exibidas por inteiro; o botão de ampliar oferece uma visualização adicional. Se um arquivo estiver ausente, aparece um placeholder com plataforma, tela e caminho esperado.
 - Arquitetura: o fluxograma SVG editável está em `src/components/Architecture.tsx`; cores e medidas estão nas classes `.flow-*` de `src/style.css`. Para usar uma imagem no lugar, coloque-a em `public/images/` e ajuste `architecture.replacementImage` em `src/data/content.ts`. Deixe o valor vazio para exibir o fluxograma. Veja [ARCHITECTURE.md](ARCHITECTURE.md).
 - Paleta e layout: `src/style.css`.
 

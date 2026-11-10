@@ -20,31 +20,41 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Fala sugerida:** “Projetos sociais de pequeno porte precisam organizar recursos e atividades com equipes enxutas. O Conecta Social reúne esses dados e oferece uma área web de gestão. O aplicativo mobile leva consulta e operações para uma interface própria de uso em campo. O ganho esperado é clareza na rotina; não estamos apresentando um indicador de impacto medido.”
 
-**Transição:** Mostrar como os riscos foram mapeados.
+**Transição:** Apresentar a evolução da plataforma até o aplicativo mobile.
 
-## 3. Mapa de riscos — 1:00
+## 3. Evolução do projeto — 0:30
 
-**Objetivo:** Explicar o método visual da matriz.
+**Objetivo:** Situar a entrega mobile na trajetória do projeto.
 
-**Pontos essenciais:** A matriz registra nove entradas, mas a fala se concentra em R01 e R02. Preserve os valores originais: R01, impacto 8, probabilidade 7, pontuação 56, alto; R02, impacto 6, probabilidade 5, pontuação 30, médio.
+**Pontos essenciais:** API e gestão web formavam a base anterior; o aplicativo mobile foi construído neste semestre.
 
-**Fala sugerida:** “Mapeamos nove riscos, mas vou destacar dois que mostram situações diferentes. O R01 trata da possibilidade de dados sensíveis aparecerem nos logs. Na matriz, recebeu impacto 8 e probabilidade 7, totalizando 56, com criticidade alta. O R02 trata de tentativas repetidas de login sem controle; recebeu impacto 6 e probabilidade 5, totalizando 30, com criticidade média. Esses são os valores originais da avaliação.”
+**Fala sugerida:** “O Conecta Social já contava com uma API para as regras e os dados e com uma aplicação web para gestão. Neste semestre, construímos o aplicativo mobile, ampliando o acesso à plataforma e trazendo operações para o uso em campo.”
 
-**Ação no slide:** Começar com R01 selecionado e clicar em R02 ao mencioná-lo.
+**Transição:** Apresentar os riscos identificados na plataforma.
 
-**Transição:** Mostrar o que já foi tratado em R01 e o que falta em R02.
+## 4. Mapa de riscos — 1:00
 
-## 4. R01 e R02: tratamento e próximo passo — 1:00
+**Objetivo:** Apresentar a matriz e destacar dois riscos mitigados.
 
-**Objetivo:** Contrastar uma mitigação registrada e observada no código com um tratamento ainda pendente.
+**Pontos essenciais:** R01: impacto 8, probabilidade 7, pontuação 56, alto. R07: impacto 6, probabilidade 3, pontuação 18, médio.
 
-**Pontos essenciais:** R01 consta como mitigado: o interceptor oculta chaves sensíveis no primeiro nível do payload, e o logger envia sem bloquear a resposta. Isso não comprova sanitização profunda. R02 consta como em mitigação: a matriz recomenda rate limiting, MFA ou lockout; não apresentar a proteção como implementada.
+**Fala sugerida:** “Mapeamos nove riscos e vamos destacar dois que já tiveram tratamento. O R01 trata da possível exposição de dados sensíveis nos logs. O R07 trata da validação de links externos do Instagram usados nas publicações.”
 
-**Fala sugerida:** “No R01 já existe um tratamento observável. Antes de registrar a requisição, o interceptor oculta campos sensíveis, como senha e token, no primeiro nível do payload. O envio dos logs também é assíncrono, então não segura a resposta da API. É uma mitigação concreta, embora ainda caiba validar dados aninhados. Já o R02 segue em mitigação. A matriz propõe limitar tentativas de login por rate limiting, MFA ou bloqueio temporário; ainda não devemos dizer que essa proteção está entregue. Essa diferença entre medida aplicada e próxima ação é o ponto principal do nosso mapa.”
+**Ação no slide:** Selecionar R01 e depois R07.
+
+**Transição:** Mostrar as medidas aplicadas aos dois riscos.
+
+## 5. Riscos mitigados: R01 e R07 — 1:00
+
+**Objetivo:** Explicar dois tratamentos registrados e observados no código.
+
+**Pontos essenciais:** No R01, o interceptor oculta chaves sensíveis no primeiro nível do payload e o envio dos logs é assíncrono. No R07, a API valida o link do Instagram e gera o embed localmente.
+
+**Fala sugerida:** “No R01, o interceptor oculta campos sensíveis, como senha e token, no primeiro nível dos dados registrados. O envio dos logs também é assíncrono. No R07, a API valida o endereço do Instagram e gera localmente o conteúdo incorporado. Os dois tratamentos estão registrados como mitigados na matriz.”
 
 **Transição:** Explicar onde os componentes da aplicação se encontram.
 
-## 5. Arquitetura do Conecta Social — 2:00
+## 6. Arquitetura do Conecta Social — 1:30
 
 **Objetivo:** Explicar como os componentes do projeto se relacionam no deploy documentado.
 
@@ -54,7 +64,7 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Transição:** Passar da infraestrutura para a experiência nas duas plataformas.
 
-## 6. Eventos: web e mobile — 1:10
+## 7. Eventos: web e mobile — 1:10
 
 **Objetivo:** Comparar a mesma área em dois dispositivos.
 
@@ -64,7 +74,7 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Transição:** Usar o dashboard para discutir densidade de informação.
 
-## 7. Dashboard em duas telas — 1:10
+## 8. Dashboard em duas telas — 1:10
 
 **Objetivo:** Explicar a adaptação de indicadores.
 
@@ -74,7 +84,7 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Transição:** Mostrar um fluxo de trabalho que ganha destaque no aplicativo.
 
-## 8. Operação de doações no mobile — 1:10
+## 9. Operação de doações no mobile — 1:10
 
 **Objetivo:** Preparar a demonstração do fluxo operacional.
 
@@ -84,7 +94,7 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Transição:** Registrar o espaço reservado ao material acadêmico final.
 
-## 9. Resumo expandido — 1:00
+## 10. Resumo expandido — 1:00
 
 **Objetivo:** Apresentar a síntese do resumo expandido sem reproduzir seus parágrafos na tela.
 
@@ -94,7 +104,7 @@ O roteiro de fala soma **10 minutos** antes de uma demonstração de **5 minutos
 
 **Transição:** Abrir o aplicativo real.
 
-## 10. Demonstração ao vivo — 5:00
+## 11. Demonstração ao vivo — 5:00
 
 **Objetivo:** Deixar uma transição clara e uma tela estável durante o preparo.
 

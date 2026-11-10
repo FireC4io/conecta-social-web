@@ -1,4 +1,4 @@
-export type SlideId = 'abertura' | 'pitch' | 'matriz' | 'tratamento' | 'arquitetura' | 'eventos' | 'dashboard' | 'operacao' | 'resumo' | 'demo'
+export type SlideId = 'abertura' | 'pitch' | 'timeline' | 'matriz' | 'tratamento' | 'arquitetura' | 'eventos' | 'dashboard' | 'operacao' | 'resumo' | 'demo'
 export interface SlideMeta { id: SlideId; title: string; section: string; seconds: number }
 export const teamMembers = [
   'Guilherme Pazetti de Oliveira',
@@ -9,9 +9,10 @@ export const teamMembers = [
 export const slides: SlideMeta[] = [
   { id: 'abertura', title: 'Conecta Social', section: 'Projeto', seconds: 30 },
   { id: 'pitch', title: 'Gestão para iniciativas sociais', section: 'Projeto', seconds: 60 },
+  { id: 'timeline', title: 'Evolução do projeto', section: 'Projeto', seconds: 30 },
   { id: 'matriz', title: 'Mapa de riscos', section: 'Segurança', seconds: 60 },
-  { id: 'tratamento', title: 'R01 e R02: tratamento e próximo passo', section: 'Segurança', seconds: 60 },
-  { id: 'arquitetura', title: 'Arquitetura do Conecta Social', section: 'Nuvem', seconds: 120 },
+  { id: 'tratamento', title: 'Riscos mitigados: R01 e R07', section: 'Segurança', seconds: 60 },
+  { id: 'arquitetura', title: 'Arquitetura do Conecta Social', section: 'Nuvem', seconds: 90 },
   { id: 'eventos', title: 'Eventos: web e mobile', section: 'Experiência', seconds: 70 },
   { id: 'dashboard', title: 'Dashboard em duas telas', section: 'Experiência', seconds: 70 },
   { id: 'operacao', title: 'Operação de doações no mobile', section: 'Experiência', seconds: 70 },
